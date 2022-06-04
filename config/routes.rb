@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   }
     namespace :admin do
     resources :genres, only: [:index, :edit, :create, :update]
+    resources :items, only: [:index, :new, :show, :edit, :create, :update]
   end
 
   # 顧客用
