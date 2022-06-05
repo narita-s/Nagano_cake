@@ -1,2 +1,65 @@
-<h1>Admin::Items#edit</h1>
-<p>Find me in app/views/admin/items/edit.html.erb</p>
+<body>
+  <main>
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-4 mt-5">
+          <h3 class="text-center">商品編集</h3>
+        </div>
+      </div>
+      <%= form_with model: @item, url: admin_item_path(@item.id), method: :patch do |f| %>
+        <div class="row">
+          <div class="col-md-7 mx-auto">
+            <table class="table table-borderless">
+              <tr>
+                <div class="form-group">
+                  <th><%= f.label :商品画像 %></th>
+                  <th><%= f.file_field :image, accept: "image/*" %></th>
+                </div>
+              </tr>
+
+              <tr>
+                <div class="form-group">
+                  <th><%= f.label :商品名 %></th>
+                  <td><%= f.text_field :name, size: "50x1", placeholder:"商品名" %></td>
+                </div>
+              </tr>
+              <tr>
+                <div class="form-group">
+                  <th><%= f.label :商品説明 %></th>
+                  <td><%= f.text_area :introduction, size: "50x5", placeholder:"ここに説明文を記述します" %></td>
+                </div>
+              </tr>
+              <tr>
+                <div class="form-group">
+                  <th><%= f.label :ジャンル %></th>
+                  <td><%= f.collection_select :genre_id, Genre.all, :id, :name, {prompt: "--選択してください--"} %></td>
+                </div>
+              </tr>
+              <tr>
+              <div class="form-group">
+                <th><%= f.label :税抜価格 %></th>
+                <td><%= f.text_field :price, size: "50x1", placeholder:"1000" %>円</td>
+              </div>
+              </tr>
+              <tr>
+              <div class="form-group">
+                <th><%= f.label :販売ステータス %></th>
+                <td><%= f.radio_button :is_active, true, checked: true %>
+                    <%= f.label :is_active, "販売中" %>
+                    <%= f.radio_button :is_active, false %>
+                    <%= f.label :is_active, "販売停止中" %>
+                </td>
+              </div>
+              </tr>
+            </table>
+            <div class="row">
+              <div class="col-md-3 mx-auto">
+                <%= f.submit "変更を保存", class:"btn btn-success" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </main>
+</body>

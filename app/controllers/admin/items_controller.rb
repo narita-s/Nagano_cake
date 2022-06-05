@@ -19,6 +19,18 @@ class Admin::ItemsController < ApplicationController
   end
 
   def edit
+    @item = Item.find(params[:id])
+  end
+
+  def update
+    @item= Item.find(params[:id])
+    @item.update(item_params)
+    if @item.save
+      redirect_to admin_item_path(@item.id)
+      flash[:notice] = "You have created book successfully."
+    else
+      render :edit
+    end
   end
 
   private
