@@ -1,11 +1,20 @@
 Rails.application.routes.draw do
 
+  get 'about' => 'public/homes#about'
+  root 'public/homes#top'
+  
+  namespace :public do
+    # get 'homes/top'
+    # get 'homes/about'
+  end
+  
   namespace :admin do
     get 'customers/index'
     get 'customers/show'
     get 'customers/edit'
   end
-  root to: "homes#top"
+  
+
 
   # 管理者用
   # URL /admin/sign_in ...
@@ -15,6 +24,7 @@ Rails.application.routes.draw do
     namespace :admin do
     resources :genres, only: [:index, :edit, :create, :update]
     resources :items, only: [:index, :new, :show, :edit, :create, :update]
+    
   end
 
   # 顧客用
