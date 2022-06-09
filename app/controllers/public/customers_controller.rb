@@ -15,8 +15,11 @@ class Public::CustomersController < ApplicationController
 
   def update
     @customer = current_customer
-    @customer.update(customer_params)
-    redirect_to customer_path(@customer.id)
+    if @customer.update(customer_params)
+      redirect_to customers_path
+    else
+      redirect_to request.referer
+    end
   end
 
 
