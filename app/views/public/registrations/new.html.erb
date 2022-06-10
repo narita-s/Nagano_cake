@@ -11,18 +11,12 @@
         <div class="col-md-12">
           <%= form_with model: @customer, url: customer_registration_path do |f| %>
             <%= render "public/shared/error_messages", resource: resource %>
-            <div class="row">
-            <div class="field">
-              <%= f.label :姓 %>
-              <%= f.text_field :last_name %>
-            </div>
-
-            <div class="field">
-              <%= f.label :名 %>
-              <%= f.text_field :first_name %>
-            </div>
-            </div>
-
+        <div class="row form-group pt-3">
+          <div class="col-3"><%= f.label :氏名 %></div>
+          <div class="col-md-3"><%= f.text_field :last_name, autofocus: true, class:"form-control" %></div>
+          <div class="col-md-3"><%= f.text_field :first_name ,class:"form-control" %></div>
+        </div>
+      
             <div class="field">
               <%= f.label :セイ %><br>
               <%= f.text_field :last_name_kana %>
