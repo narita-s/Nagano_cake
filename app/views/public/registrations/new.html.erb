@@ -6,61 +6,51 @@
           <h3 class="text-center">新規会員登録</h3>
         </div>
       </div>
-
-
         <div class="col-md-12">
           <%= form_with model: @customer, url: customer_registration_path do |f| %>
             <%= render "public/shared/error_messages", resource: resource %>
-        <div class="row form-group pt-3">
-          <div class="col-3"><%= f.label :氏名 %></div>
-          <div class="col-md-3"><%= f.text_field :last_name, autofocus: true, class:"form-control" %></div>
-          <div class="col-md-3"><%= f.text_field :first_name ,class:"form-control" %></div>
-        </div>
-      
-            <div class="field">
-              <%= f.label :セイ %><br>
-              <%= f.text_field :last_name_kana %>
+              <div class="row form-group pt-2">
+                <div class="col-md-3 d-flex align-items-center">名前</div>
+                <div class="d-flex align-items-center">(姓)　</div>
+                <div class="col-md-3"><%= f.text_field :last_name, autofocus: true, class:"form-control" %></div>
+                <div class="ml-5 d-flex align-items-center">(名)　</div>
+                <div class="col-md-3"><%= f.text_field :first_name ,class:"form-control" %></div>
+              </div>
+              <div class="row form-group pt-2">
+                <div class="col-3 d-flex align-items-center">フリガナ</div>
+                <div class="d-flex align-items-center">(セイ)</div>
+                <div class="col-3"><%= f.text_field :last_name_kana, autofocus: true, class:"form-control" %></div>
+                <div class="ml-5 d-flex align-items-center">(メイ)</div>
+                <div class="col-3"><%= f.text_field :first_name_kana,class:"form-control" %></div>
+              </div>
+              <div class="row form-group pt-2">
+                <div class="col-3 d-flex align-items-center">メールアドレス</div>
+                <div class="col-md-3 ml-5"><%=f.email_field :email, autofocus: true, autocomplete: "email" , class:"form-control" %></div>
+              </div>
+              <div class="row form-group pt-2">
+                <div class="col-3 d-flex align-items-center">郵便番号(ハイフンなし)</div>
+                <div class="col-md-3 ml-5"><%= f.text_field :postal_code, class:"form-control" %></div>
+              </div>
+              <div class="row form-group pt-2">
+                <div class="col-3 d-flex align-items-center">住所</div>
+                <div class="col-md-7 ml-5"><%= f.text_field :address, class:"form-control" %></div>
+              </div>
+              <div class="row form-group pt-2">
+                <div class="col-3 d-flex align-items-center">電話番号(ハイフンなし)</div>
+                <div class="col-md-3 ml-5"><%= f.text_field :telephone_number, class:"form-control" %></div>
+              </div>
+              <div class="row form-group pt-2">
+                <div class="col-3 d-flex align-items-center">パスワード(6文字以上)</div>
+                <div class="col-md-3 ml-5"><%= f.text_field :password, autocomplete: "new-password", class:"form-control" %></div>
+              </div>
+              <div class="row form-group pt-2">
+                <div class="col-3 d-flex align-items-center">パスワード(確認用)</div>
+                <div class="col-md-3 ml-5"><%= f.text_field :password_confirmation, autocomplete: "new-password", class:"form-control" %></div>
+              </div>
+            <div class="row form-group pt-2">
+              <div class="col-3 d-flex align-items-center"></div>
+              <div class="col-md-3 ml-5"><%= f.submit "新規登録", class:"btn btn-success col-md-10" %></div>
             </div>
-
-            <div class="field">
-              <%= f.label :メイ %><br>
-              <%= f.text_field :first_name_kana %>
-            </div>
-
-            <div class="field">
-              <%= f.label :メールアドレス %><br />
-              <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-            </div>
-
-            <div class="field">
-              <%= f.label :郵便番号 %><br>
-              <%= f.text_field :postal_code %>
-            </div>
-
-            <div class="field">
-              <%= f.label :住所 %><br>
-              <%= f.text_field :address %>
-            </div>
-
-            <div class="field">
-              <%= f.label :電話番号 %><br>
-              <%= f.text_field :telephone_number %>
-            </div>
-
-            <div class="field">
-              <%= f.label :パスワード %>
-              <% if @minimum_password_length %>
-              <em>(<%= @minimum_password_length %> 文字以上)</em>
-              <% end %><br />
-              <%= f.password_field :password, autocomplete: "new-password" %>
-            </div>
-
-            <div class="field">
-              <%= f.label :パスワード（確認用） %><br />
-              <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-            </div>
-            <div class="actions">
-              <%= f.submit "新規登録", class:"btn btn-success my-3 mr-3 mx-5" %>
             </div>
           <% end %>
 
