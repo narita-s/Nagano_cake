@@ -1,46 +1,46 @@
-<body>
-  <main>
-    <div class="container">
-      <div class="row text-center">
-        <div class="col-md-5 mt-5 mb-4">
-          <h3 class="text-center">マイページ</h3>
-        </div>
-      </div>
-      <div class="row mb-1">
-        <div class="col-md-2">
-          <h5 class="font-weight-bold ">登録情報</h5>
-        </div>
-          <%= link_to "編集する", edit_customers_path ,class:"btn btn-success col-md-2 ml-5"%>
-      </div>
-      <table class="table table-bordered col-md-8 mt-3">
-        <tr>
-          <td class="col-md-3">氏名</td>
-          <td><%= @customer.full_name %></td>
-        </tr>
-        <tr>
-          <td class="col-md-3">カナ</td>
-          <td><%= @customer.full_name_kana %></td>
-        </tr>
-        <tr>
-          <td class="col-md-3">郵便番号</td>
-          <td><%= @customer.postal_code %></td>
-        </tr>
 
-        <tr>
-          <td class="col-md-3">住所</td>
-          <td><%= @customer.address %></td>
-        </tr>
-
-        <tr>
-          <td class="col-md-3">電話番号</td>
-          <td><%= @customer.telephone_number %></td>
-        </tr>
-
-        <tr>
-          <td class="col-md-3">メールアドレス</td>
-          <td><%= @customer.email %></td>
-        </tr>
-      </table>
+<div class="container">
+  <div class="row text-center">
+    <div class="col-md-5 mt-5 mb-4">
+      <h3 class="text-center">マイページ</h3>
     </div>
-  </main>
-</body>
+  </div>
+  <div class="row mb-1">
+    <div class="col-md-2">
+      <h5 class="font-weight-bold ">登録情報</h5>
+    </div>
+      <%= link_to "編集する", edit_customers_path ,class:"btn btn-success col-md-2 ml-5"%>
+  </div>
+  <table class="table table-bordered col-md-8 mt-3">
+    <tr>
+      <td class="col-md-3">氏名</td>
+      <td><%= @customer.full_name %></td>
+    </tr>
+    <tr>
+      <td class="col-md-3">カナ</td>
+      <td><%= @customer.full_name_kana %></td>
+    </tr>
+    <tr>
+      <td class="col-md-3">郵便番号</td>
+      <td><%= @customer.postal_code %></td>
+    </tr>
+    <tr>
+      <td class="col-md-3">住所</td>
+      <td><%= @customer.address %></td>
+    </tr>
+    <tr>
+      <td class="col-md-3">電話番号</td>
+       <td><%= @customer.telephone_number %></td>
+    </tr>
+    <tr>
+      <td class="col-md-3">メールアドレス</td>
+      <td><%= @customer.email %></td>
+    </tr>
+  </table>
+  <div class="row mb-1">
+    <div class="col-md-2">
+      <h5 class="font-weight-bold ">配送先</h5>
+    </div>
+    <%= link_to "編集する", edit_address_path ,class:"btn btn-success col-md-2 ml-5"%>
+  </div>
+</div>

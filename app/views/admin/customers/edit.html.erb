@@ -44,13 +44,15 @@
         </div>
         <div class="row form-group">
           <div class="col-3"><%= f.label :会員ステータス %></div>
-            <%= form.radio_button :, :male %>
-            <%= form.label :gender, "男性", {value: :male, style: "display: inline-block;"} %>
-            <%= form.radio_button :gender, :female %>
-            <%= form.label :gender, "女性", {value: :female, style: "display: inline-block;"} %>
-
+          <div class="custom-control custom-radio">
+            <%= f.radio_button :is_deleted, :false %>
+            <%= f.label "有効" %>
+            <%= f.radio_button :is_deleted, :true %>
+            <%= f.label "退会" %>
+          </div>
+        </div>
         <div class="row form-group offset-3 pt-3">
-          <%= f.submit "編集内容を保存" ,class:"btn btn-success col-md-3"%>
+          <%= f.submit "変更を保存" ,class:"btn btn-success col-md-3"%>
         </div>
       <% end %>
     </div>
