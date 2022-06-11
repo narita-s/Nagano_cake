@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row text-center">
+    <div class="col-md-5 mt-5">
+      <h3 class="text-center">商品一覧</h3>
+    </div>
+  </div>
+  <div class="col-md-10 d-flex flex-row flex-wrap mr-2" >
+        <% @items.each do |item| %>
+        <div class="mr-2">
+         <%= link_to item_path(item) do %>
+          <%= image_tag item.image, size: "150x100" %>
+          <div class="mt-2 text-center">
+            <span style="color: #808080;"><%= item.name %></span><br />
+            <span style="color: #000000;"> ¥<%= (item.price * 1.10).round.to_s(:delimited) %></span>
+           </div>
+          </div>
+         <% end %>
+        <% end %>
+  </div>
+  </div>
+  <div class="col-md-12 offset-5">
+    <%= paginate @items %>
+  </div>
+</div>
