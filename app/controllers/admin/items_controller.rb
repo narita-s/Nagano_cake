@@ -27,7 +27,7 @@ class Admin::ItemsController < ApplicationController
     @item.update(item_params)
     if @item.save
       redirect_to admin_item_path(@item.id)
-      flash[:notice] = "You have created book successfully."
+      flash[:notice] = "You have created successfully."
     else
       render :edit
     end
