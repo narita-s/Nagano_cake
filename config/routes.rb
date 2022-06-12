@@ -3,12 +3,7 @@ Rails.application.routes.draw do
   # 会員側のルーティング設定
   root to: "public/homes#top"
 
-  # 顧客用
-  # URL /customers/sign_in ...
-  devise_for :customers,skip: [:passwords], controllers: {
-    registrations: "public/registrations",
-    sessions: 'public/sessions'
-  }
+
 
   scope module: :public do
     get "/about", to: "homes#about"
@@ -31,6 +26,11 @@ Rails.application.routes.draw do
     resources :customers, only: [:index, :show, :edit, :update]
   end
 
-
+  # 顧客用
+  # URL /customers/sign_in ...
+  devise_for :customers,skip: [:passwords], controllers: {
+    registrations: "public/registrations",
+    sessions: 'public/sessions'
+  }
 
 end
