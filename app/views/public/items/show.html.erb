@@ -1,2 +1,24 @@
-<h1>Public::Items#show</h1>
-<p>Find me in app/views/public/items/show.html.erb</p>
+<div class="container">
+  <div class="row align-items-center m-5">
+    <div class="col-lg text-center mb-5">
+      <% if @item.image.attached? %>
+        <%= image_tag @item.image, size: "200x200" %>
+      <% else %>
+        <%= image_tag 'no_image', size: "200x200" %>
+      <% end %>
+    </div>
+    <div class="col-md-7">
+      <table class="table table-borderless">
+        <tr>
+          <h2><%= @item.name %></h2>
+        </tr>
+        <tr>
+          <td><%= @item.introduction %></td>
+        </tr>
+        <tr>
+          <td>¥<%= @item.tax_in_price %>(税込)</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
