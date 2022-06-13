@@ -7,7 +7,7 @@
   <div class="col-md-10 d-flex flex-row flex-wrap mr-2" >
         <% @items.each do |item| %>
         <div class="mr-2">
-         <%= link_to item_path(item) do %>
+          <%= link_to item_path(item) do %>
           <%= image_tag item.image, size: "150x100" %>
           <div class="mt-2 text-center">
             <span style="color: #808080;"><%= item.name %></span><br />
