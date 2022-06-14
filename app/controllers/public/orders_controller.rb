@@ -4,15 +4,18 @@ class Public::OrdersController < ApplicationController
 
   def new
     @order = Order.new
+    @addresses = current_customer.addresses.all
   end
 
   def create
+    @order = Order.new(order_params)
   end
 
   def confirm
     @order = Order.new(order_params)
+    @cart_items = current_customer.cart_items
 
-    if params[:order][:address_option] == "0"
+    if params[:order][:address_select] == "0"
       @order.postal_code = current_customer.postal_code
       @order.address = current_customer.address
       @order.name = current_customer.full_name
@@ -37,6 +40,9 @@ class Public::OrdersController < ApplicationController
   end
 
   def show
+    # @order = current_customer.orders.find(params[:id])
+    # @order_items = @order.order_items
+    # @total = @order_items.inject(0) { |sum, item| sum + item.subtotal }
   end
 
   private
