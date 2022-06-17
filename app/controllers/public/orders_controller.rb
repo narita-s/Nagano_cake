@@ -9,6 +9,20 @@ class Public::OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
+    @order.customer_id = current_customer.id
+    @order.save
+
+    current_customer.cart_items.each do |cart_item| #カートの商品を1つずつ取り出しループ
+      @order_detail = OrderDetail.new #初期化宣言
+      @order_detail.item_id = cart_item.item_id #商品idを注文商品idに代入
+      @order_detail.amount = cart_item.amount #商品の個数を注文商品の個数に代入
+      @order_detail.order_id =  @order.id #注文商品に注文idを紐付け
+      @order_detail.save #注文商品を保存
+    end
+
+
+    current_customer.cart_items.destroy_all
+    redirect_to thanks_orders_path
   end
 
   def confirm
@@ -23,7 +37,7 @@ class Public::OrdersController < ApplicationController
       @order.postal_code =  Address.find(params[:order][:address_id]).postal_code
       @order.address = Address.find(params[:order][:address_id]).address
       @order.name = Address.find(params[:order][:address_id]).name
-  　elsif params[:order][:address_select] = "2"
+    elsif params[:order][:address_select] = "2"
       @order.postal_code = params[:order][:postal_code]
       @order.address = params[:order][:address]
       @order.name = params[:order][:name]
@@ -37,6 +51,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
+    @orders = current_customer.orders.all
   end
 
   def show
