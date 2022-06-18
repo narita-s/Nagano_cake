@@ -11,9 +11,14 @@ class Public::AddressesController < ApplicationController
     @address = Address.new(address_params)
     @address.customer_id = current_customer.id
     @customer = current_customer
-    @address.save
     @addresss = Address.all
-    redirect_to '/addresses'
+
+    if @address.save
+      @addresses = current_customer.addresses.all
+    else
+      @addresses = current_customer.addresses.all
+      render :index
+    end
   end
 
   def edit
