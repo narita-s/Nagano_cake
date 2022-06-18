@@ -14,14 +14,18 @@ Rails.application.routes.draw do
     get 'customers/sign_up', to: 'public/registrations#new', as: :new_customer_registration
     resource :customers, only: [:create], as: 'customer_registration', controller: 'public/registrations'
   end
-  
+
   scope module: :public do
     get "/about", to: "homes#about"
     get "/customers/unsubscribe", to: "customers#unsubscribe"
     patch "/customers/withdrawal", to: "customers#withdrawal"
     resource :customers, only: [:index, :show, :edit, :update]
     resources :items, only: [:index, :show]
-    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
+    resources :addresses, only: [:index, :edit, :create, :update, :destroy] do
+      collection do
+        get "addresses" => "addresses#index"
+      end
+    end
     resources :cart_items, only: [:index, :update, :destroy, :create] do
       collection do
         delete "destroy_all"
