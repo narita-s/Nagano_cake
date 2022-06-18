@@ -6,13 +6,13 @@
   </div>
 
   <% if @address.errors.any? %>
-  <%= @address.errors.count %>件のエラーが発生しました
+  <%= @address.errors.count %>件のエラーが発生しました 
   <ul>
     <% @address.errors.full_messages.each do |message| %>
       <li><%= message %></li>
     <% end %>
   </ul>
-<% end %>
+  <% end %>
 
   <div class="col-md-12 mt-5">
     <%= form_with model: @address, url: addresses_path, local: true do |f| %>
