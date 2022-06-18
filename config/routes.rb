@@ -10,6 +10,11 @@ Rails.application.routes.draw do
     sessions: 'public/sessions'
   }
 
+  devise_scope :customer do
+    get 'customers/sign_up', to: 'public/registrations#new', as: :new_customer_registration
+    resource :customers, only: [:create], as: 'customer_registration', controller: 'public/registrations'
+  end
+  
   scope module: :public do
     get "/about", to: "homes#about"
     get "/customers/unsubscribe", to: "customers#unsubscribe"
