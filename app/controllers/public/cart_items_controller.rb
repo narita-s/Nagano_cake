@@ -25,7 +25,7 @@ class Public::CartItemsController < ApplicationController
       render 'index'
     end
   end
-    
+
   def update
     @cart_item = CartItem.find(params[:id])
     @cart_item.update(amount: params[:cart_item][:amount])
