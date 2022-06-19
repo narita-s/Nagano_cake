@@ -17,9 +17,9 @@ class Public::OrdersController < ApplicationController
       @order_detail.item_id = cart_item.item_id #商品idを注文商品idに代入
       @order_detail.amount = cart_item.amount #商品の個数を注文商品の個数に代入
       @order_detail.order_id =  @order.id #注文商品に注文idを紐付け
+      @order_detail.price = cart_item.item.price * 1.1
       @order_detail.save #注文商品を保存
     end
-
 
     current_customer.cart_items.destroy_all
     redirect_to thanks_orders_path
@@ -27,7 +27,13 @@ class Public::OrdersController < ApplicationController
 
   def confirm
     @order = Order.new(order_params)
+    @order.payment_method = params[:order][:payment_method]
+    @order.shipping_cost = 800
     @cart_items = current_customer.cart_items
+    @price = @cart_items.inject(0) { |sum, item| sum + item.subtotal }
+    @total_price = @price + @order.shipping_cost
+
+
 
     if params[:order][:address_select] == "0"
       @order.postal_code = current_customer.postal_code
@@ -52,6 +58,7 @@ class Public::OrdersController < ApplicationController
 
   def index
     @orders = current_customer.orders.all
+
   end
 
   def show
@@ -63,7 +70,7 @@ class Public::OrdersController < ApplicationController
   private
 
     def order_params
-        params.require(:order).permit(:postal_code, :address, :name, :total_prive, :shipping_cost, :payment_method, :status)
+        params.require(:order).permit(:postal_code, :address, :name, :total_price, :shipping_cost, :payment_method, :status)
     end
 
 end
