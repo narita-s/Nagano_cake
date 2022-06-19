@@ -36,14 +36,13 @@
     </div>
     <div class='col-md-4'>
       <table class="table table-bordered border-dark">
-        <% @order.shipping_cost = 800 %>
         <tr>
           <th class="table-secondary">送料</th>
           <td><%= @order.shipping_cost.to_s(:delimited) %></td>
         </tr>
         <tr>
           <th class="table-secondary">商品合計</th>
-          <td><%= total.to_i.to_s(:delimited) %></td>
+          <td><%= total.to_s(:delimited) %></td>
         </tr>
         <% @order.total_price = @order.shipping_cost + total.to_i %>
         <tr>
