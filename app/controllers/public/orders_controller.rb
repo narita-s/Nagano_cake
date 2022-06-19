@@ -7,24 +7,6 @@ class Public::OrdersController < ApplicationController
     @addresses = current_customer.addresses.all
   end
 
-  def create
-    @order = Order.new(order_params)
-    @order.customer_id = current_customer.id
-    @order.save
-
-    current_customer.cart_items.each do |cart_item| #カートの商品を1つずつ取り出しループ
-      @order_detail = OrderDetail.new #初期化宣言
-      @order_detail.item_id = cart_item.item_id #商品idを注文商品idに代入
-      @order_detail.amount = cart_item.amount #商品の個数を注文商品の個数に代入
-      @order_detail.order_id =  @order.id #注文商品に注文idを紐付け
-      @order_detail.price = cart_item.item.price * 1.1
-      @order_detail.save #注文商品を保存
-    end
-
-    current_customer.cart_items.destroy_all
-    redirect_to thanks_orders_path
-  end
-
   def confirm
     @order = Order.new(order_params)
     @order.payment_method = params[:order][:payment_method]
@@ -32,7 +14,6 @@ class Public::OrdersController < ApplicationController
     @cart_items = current_customer.cart_items
     @price = @cart_items.inject(0) { |sum, item| sum + item.subtotal }
     @total_price = @price + @order.shipping_cost
-
 
 
     if params[:order][:address_select] == "0"
@@ -52,6 +33,24 @@ class Public::OrdersController < ApplicationController
     end
 
   end
+
+  def create
+    @order = Order.new(order_params)
+    @order.customer_id = current_customer.id
+    @order.save
+
+    current_customer.cart_items.each do |cart_item|
+      @order_detail = OrderDetail.new
+      @order_detail.item_id = cart_item.item_id
+      @order_detail.amount = cart_item.amount
+      @order_detail.order_id =  @order.id
+      @order_detail.price = cart_item.item.price * 1.1
+      @order_detail.save
+    end
+    current_customer.cart_items.destroy_all
+    redirect_to thanks_orders_path
+  end
+
 
   def thanks
   end

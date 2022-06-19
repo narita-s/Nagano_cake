@@ -27,7 +27,7 @@
               <%= cart_item.amount %>
             </td>
             <td>
-              <%= cart_item.subtotal.to_i.to_s(:delimited) %>
+              <%= cart_item.subtotal.to_s(:delimited) %>
             </td>
           </tr>
           <% total += cart_item.subtotal %>
@@ -39,16 +39,16 @@
         <% @order.shipping_cost = 800 %>
         <tr>
           <th class="table-secondary">送料</th>
-          <td><%= @order.shipping_cost %></td>
+          <td><%= @order.shipping_cost.to_s(:delimited) %></td>
         </tr>
         <tr>
           <th class="table-secondary">商品合計</th>
-          <td><%= total.to_i %></td>
+          <td><%= total.to_i.to_s(:delimited) %></td>
         </tr>
         <% @order.total_price = @order.shipping_cost + total.to_i %>
         <tr>
           <th class="table-secondary">請求金額</th>
-          <td><%= @order.total_price %></td>
+          <td><%= @order.total_price.to_s(:delimited) %></td>
         </tr>
       </table>
     </div>
