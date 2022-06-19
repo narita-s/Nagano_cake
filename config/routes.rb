@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    get 'orders/show'
+  end
   # 会員側のルーティング設定
   root to: "public/homes#top"
 
