@@ -15,7 +15,6 @@ class Public::OrdersController < ApplicationController
     @price = @cart_items.inject(0) { |sum, item| sum + item.subtotal }
     @total_price = @price + @order.shipping_cost
 
-
     if params[:order][:address_select] == "0"
       @order.postal_code = current_customer.postal_code
       @order.address = current_customer.address

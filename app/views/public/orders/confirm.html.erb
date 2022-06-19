@@ -53,8 +53,10 @@
     </div>
   </div>
   <div class='row'>
-    <div class='col-md-7'>
+    <div class='col-md-2'>
       <h5>支払方法</h5>
+      </div>
+    <div class='col-md-5'>
       <%= @order.payment_method_i18n %>
     </div>
     <div class='col-md-7'>
@@ -65,7 +67,7 @@
     </div>
   </div>
   <div class="row justify-content-center py-5">
-      <%= form_with model: @order, url: orders_path, local: true do |f| %>
+      <%= form_with model: @order, url: orders_path, method: :POST, local: true do |f| %>
         <%= f.hidden_field :payment_method %>
       	<%= f.hidden_field :address %>
       	<%= f.hidden_field :postal_code %>
