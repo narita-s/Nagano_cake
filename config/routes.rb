@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-
-  namespace :admin do
-    get 'orders/show'
-  end
   # 会員側のルーティング設定
   root to: "public/homes#top"
 
@@ -54,6 +50,7 @@ Rails.application.routes.draw do
     resources :genres, only: [:index, :edit, :create, :update]
     resources :items, only: [:index, :new, :show, :edit, :create, :update]
     resources :customers, only: [:index, :show, :edit, :update]
+    resources :orders, only: [:show, :update]
   end
 
 end

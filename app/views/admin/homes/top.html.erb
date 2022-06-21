@@ -1,0 +1,33 @@
+<body>
+  <main>
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-5 mt-5">
+          <h3 class="text-center">注文履歴一覧</h3>
+        </div>
+      </div>
+        <div class="col-md-10 mx-auto mt-4">
+          <table class="table">
+             <thead class="thead-light">
+              <tr>
+                <th>購入日時</th>
+                <th>購入者</th>
+                <th>注文個数</th>
+                <th>注文ステータス</th>
+              </tr>
+            </thead>
+              <tbody>
+                <% @orders.each do |order| %>
+                  <tr>
+                    <td class="text-left"><%= order.created_at %></td>
+                    <td><%= order.customer.full_name %></td>
+                    <td><%= order.order_details.sum(:amount) %></td>
+                    <td><%= order.status_i18n %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+          </table>
+      </div>
+    </div>
+  </main>
+</body>
