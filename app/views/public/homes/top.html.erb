@@ -1,11 +1,49 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-7 mx-auto">
-      <div class="text-left">
-            ようこそ、ながのCAKEへ！<br>
-            このサイトは、ケーキ販売のECサイトになります。<br>
-            会員でない方も商品の閲覧はできますが、<br>
-            購入には会員登録が必要になります。<br>
+    <div class="card mx-auto">
+      <%= image_tag('top.jpg', :size => "700x400") %>
+      <div class="card-img-overlay d-flex align-items-center">
+        <div class=".text-white-50 mx-auto">
+          ようこそ、ながのCAKEへ！<br>
+          このサイトは、ケーキ販売のECサイトになります。<br>
+          会員でない方も商品の閲覧はできますが、<br>
+          購入には会員登録が必要になります。
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-2 mt-4"></div>
+    <h4 class="col-2 mt-4">新着商品</h4>
+  </div>
+  <div class="row">
+    <div class="col-2 mt-4"></div>
+    <div class="col-md-9">
+     <table class="table table-borderless">
+      <tr class="d-flex justify-content-center">
+        <% @items.last(4).reverse_each do |item| %>
+       <td>
+        <%= link_to item_path(item.id) do %>
+         <% if item.image.attached? %>
+          <%= image_tag item.image, size: "200x130" %>
+         <% else %>
+          <%= image_tag 'no_image', size: "200x100" %>
+         <% end %>
+        <% end %>
+       <br>
+        <%= item.name %>
+       <br>
+        ￥<%= item.with_tax_price.to_s(:delimited) %>
+       </td>
+       <% end %>
+      </tr>
+     </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+     <div class="d-flex justify-content-end">
+      <%= link_to "全ての商品を見る＞", items_path %>
      </div>
     </div>
   </div>
