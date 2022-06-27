@@ -98,7 +98,7 @@ ActiveRecord::Schema.define(version: 2022_06_17_225236) do
   create_table "items", force: :cascade do |t|
     t.integer "genre_id"
     t.string "name"
-    t.string "image_id"
+    t.string "image"
     t.text "introduction"
     t.integer "price"
     t.boolean "is_active", default: true
@@ -122,7 +122,7 @@ ActiveRecord::Schema.define(version: 2022_06_17_225236) do
     t.string "address"
     t.string "name"
     t.integer "total_price"
-    t.integer "shipping_cost", default: 1000
+    t.integer "shipping_cost"
     t.integer "payment_method", default: 0
     t.integer "status", default: 0
     t.datetime "created_at", precision: 6, null: false

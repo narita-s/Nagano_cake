@@ -8,7 +8,7 @@
       <h3 class="mb-4"><%= @item.name %></h3>
       <h5 class="mb-4"><%= @item.introduction %></h5>
       <div class="mb-4">
-        <span style="font-size:1.8em;">¥<%= @item.tax_in_price %></span>
+        <span style="font-size:1.8em;">¥<%= @item.tax_in_price.to_s(:delimited)  %></span>
         <span>(税込)</span>
       </div>
       <%= form_with model: @cart_item, local: true do |f| %>
