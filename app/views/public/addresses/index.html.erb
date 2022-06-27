@@ -1,12 +1,10 @@
 <div class="container">
-  <div class="row text-center">
-    <div class="col-md-4 mt-5">
-      <h3 class="text-center">配送先登録・一覧</h3>
+  <div class="row">
+    <div class="col-1"></div>
+    <h3 class="col-5 my-4">配送先登録・一覧</h3>
     </div>
-  </div>
-
   <% if @address.errors.any? %>
-  <%= @address.errors.count %>件のエラーが発生しました 
+  <%= @address.errors.count %>件のエラーが発生しました
   <ul>
     <% @address.errors.full_messages.each do |message| %>
       <li><%= message %></li>
@@ -32,23 +30,21 @@
     <% end %>
     <div class="row col-md-10 mt-5" >
       <table class='table table-bordered'>
-        <thead class="thead-light">
-          <tr>
-            <th>郵便番号</th>
-            <th>住所</th>
-            <th>宛名</th>
-            <th></th>
-          </tr>
-        </thead>
+        <tr class="table-secondary">
+          <th>郵便番号</th>
+          <th>住所</th>
+          <th>宛名</th>
+          <th></th>
+        </tr>
         <% @addresses.each do |address| %>
           <tbody>
             <tr>
-              <td class="text-left"><%= address.postal_code %></td>
-              <td class="text-left"><%= address.address %></td>
-              <td class="text-left"><%= address.name %></td>
+              <td class="text-left align-middle"><%= address.postal_code %></td>
+              <td class="text-left align-middle"><%= address.address %></td>
+              <td class="text-left align-middle"><%= address.name %></td>
               <td>
                 <%= link_to "編集する", edit_address_path(address), class: "btn btn-success" %>
-                <%= link_to "削除する", address_path(address), method: :delete, "data-confirm" => "本当に消しますか？" , class: "btn btn-danger" %>
+                <%= link_to "削除する", address_path(address), method: :delete, "data-confirm" => "本当に消しますか？" , class: "btn btn-danger ml-3" %>
               </td>
             </tr>
           </tbody>

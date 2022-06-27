@@ -25,9 +25,9 @@
           </button>
             <ul class= "navbar-nav ml-auto">
             <% if customer_signed_in? %>
-              <li class="d-flex align-items-center mr-5">
+              <h5 class="d-flex align-items-left m-5">
                 ようこそ、<%= current_customer.last_name %>さん！
-              </li>
+              </h5>
               <li class="mr-3">
                 <%= link_to "マイページ", customers_path, class: "btn btn-outline-dark" %>
               </li>
@@ -48,7 +48,9 @@
               <li class="mr-3">
                 <%= link_to "会員一覧", admin_customers_path, class: "btn btn-outline-dark" %>
               </li>
-
+              <li class="mr-3">
+                <%= link_to "注文履歴一覧", admin_path, class: "btn btn-outline-dark" %>
+              </li>
               <li class="mr-3">
                 <%= link_to "ジャンル一覧", admin_genres_path, class: "btn btn-outline-dark" %>
               </li>
@@ -60,6 +62,9 @@
                 <%= link_to "About", about_path, class: "btn btn-outline-dark" %>
               </li>
               <li class="mr-3">
+                <%= link_to "商品一覧", items_path, class: "btn btn-outline-dark" %>
+              </li>
+              <li class="mr-3">
                 <%= link_to "新規登録", new_customer_registration_path, class: "btn btn-outline-dark" %>
               </li>
               <li class="mr-3">
@@ -67,8 +72,9 @@
               </li>
             <% end %>
             </ul>
-    </header>
+          </div>
+        </nav>
+      </header>
     <%= yield %>
-
   </body>
 </html>

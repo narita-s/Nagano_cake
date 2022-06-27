@@ -1,8 +1,7 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-8 mt-5">
-      <h3 class="col-md-6">注文情報確認</h3>
-    </div>
+    <div class="col-1"></div>
+    <h3 class="col-5 my-4">注文情報確認</h3>
   </div>
   <div class='row'>
     <div class='col-md-7'>
@@ -16,17 +15,17 @@
         <% total = 0 %>
         <% @cart_items.each do |cart_item| %>
           <tr>
-            <td>
+            <td class="align-middle">
               <%= image_tag cart_item.item.image, :size => '100x50' %>
               <%= cart_item.item.name %>
             </td>
-            <td>
+            <td class="align-middle">
               <%= cart_item.item.with_tax_price.to_s(:delimited) %>
             </td>
-            <td>
+            <td class="align-middle">
               <%= cart_item.amount %>
             </td>
-            <td>
+            <td class="align-middle">
               <%= cart_item.subtotal.to_s(:delimited) %>
             </td>
           </tr>
@@ -52,21 +51,21 @@
       </table>
     </div>
   </div>
-  <div class='row'>
-    <div class='col-md-2'>
-      <h5>支払方法</h5>
-      </div>
-    <div class='col-md-5'>
+  <div class="row col-md-12 mt-3">
+    <h5 class="font-weight-bold">支払方法</h5>
+    <h5 class='col-md-5'>
       <%= @order.payment_method_i18n %>
-    </div>
-    <div class='col-md-7'>
-      <h5>お届け先</h5>
-        〒<%= @order.postal_code %>
-        <%= @order.address %>
-        <%= @order.name %>
-    </div>
+    </h5>
   </div>
-  <div class="row justify-content-center py-5">
+  <div class="row col-md-12 mt-4">
+    <h5 class="font-weight-bold">お届け先</h5>
+    <h5 class='col-md-5'>
+      〒<%= @order.postal_code %>
+      <%= @order.address %><br>
+      <%= @order.name %>
+    </h5>
+  </div>
+  <div class="row justify-content-center py-4">
       <%= form_with model: @order, url: orders_path, method: :POST, local: true do |f| %>
         <%= f.hidden_field :payment_method %>
       	<%= f.hidden_field :address %>

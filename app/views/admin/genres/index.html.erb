@@ -18,7 +18,7 @@
       <div class="row" >
         <div class="col-md-4 mt-5">
           <table class='table'>
-            <thead>
+            <thead class="table-secondary">
               <tr>
                 <th>ジャンル</th>
                 <th></th>
@@ -28,7 +28,7 @@
               <tbody>
                 <tr>
                   <td class="text-left"><%= genre.name%></td>
-                  <td><%= link_to "編集する", edit_admin_genre_path(genre), class: "btn btn-success" %></td>
+                  <td class="text-right"><%= link_to "編集する", edit_admin_genre_path(genre), class: "btn btn-success" %></td>
                 </tr>
               </tbody>
             <% end %>

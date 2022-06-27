@@ -1,33 +1,31 @@
 <div class="container">
-  <div class="row align-items-center m-5">
-    <div class="col-lg text-center mb-5">
-      <%= image_tag @item.image, size: "200x200" %>
+  <div class="row m-5">
+    <div class="col-md-1"></div>
+    <div class="col-md-4 text-center">
+      <%= image_tag @item.image, size: "300x270" %>
     </div>
-    <div class="col-md-7">
-      <table class="table table-borderless">
-        <tr>
-          <h2><%= @item.name %></h2>
-        </tr>
-        <tr>
-          <td><%= @item.introduction %></td>
-        </tr>
-        <tr>
-          <td>¥<%= @item.tax_in_price %>(税込)</td>
-        </tr>
-      </table>
-          <%= form_with model: @cart_item, local: true do |f| %>
-            <% if @item.is_active == true %>
-              <%= f.hidden_field :item_id, :value => @item.id %>
-                <div class="row">
-                  <div class="form-group">
-                      <%= f.select :amount, *[1..5], {prompt: "個数選択"} %>
-                      <%= f.submit "カートに入れる", class: "btn btn-success" %>
-                  </div>
-                </div>
-            <% else %>
-              <h4>販売停止中</h4>
-            <% end %>
-          <% end %>
+    <div class="col-md-5 ml-5">
+      <h3 class="mb-4"><%= @item.name %></h3>
+      <h5 class="mb-4"><%= @item.introduction %></h5>
+      <div class="mb-4">
+        <span style="font-size:1.8em;">¥<%= @item.tax_in_price %></span>
+        <span>(税込)</span>
+      </div>
+      <%= form_with model: @cart_item, local: true do |f| %>
+        <% if @item.is_active == true %>
+          <%= f.hidden_field :item_id, :value => @item.id %>
+          <div class="row align-items-center">
+            <div class="col-5">
+              <%= f.select :amount, *[1..5], {prompt: "個数選択"},class: "form-control form-control-sm mx-2", style: "width: 120px" %>
+            </div>
+            <div class="col-4">
+              <%= f.submit "カートに入れる", class: "btn btn-success" %>
+            </div>
+          </div>
+        <% else %>
+          <h4>販売停止中</h4>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </div>
